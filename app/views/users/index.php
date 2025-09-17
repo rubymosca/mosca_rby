@@ -77,6 +77,13 @@
         </table>
       </div>
     </div>
+      <!-- Pagination -->
+      <?php if (isset($pager)) : ?>
+        <div class="flex justify-center mt-8">
+          <?= $pager->links() ?>
+        </div>
+      <?php endif; ?>
+    </div>
   </div>
 
   <!-- Custom Animations -->
