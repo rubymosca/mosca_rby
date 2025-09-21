@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Students Table</title>
-  <link rel="stylesheet" href="<?=base_url();?>public/style.css">
+  <link rel="stylesheet" href="<?=base_url();?>/public/style.css">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 
 <body class="relative min-h-screen font-sans bg-gradient-to-br from-fuchsia-900 via-blue-800 to-cyan-400 overflow-hidden">
-  <!-- Hero Section with SVG Wave -->
+  
+<!-- Hero Section with SVG Wave -->
   <div class="absolute inset-0 z-0">
    
     <div class="absolute inset-0 bg-gradient-to-br from-fuchsia-900/80 via-blue-800/70 to-cyan-400/60"></div>
@@ -44,6 +45,21 @@
         </h1>
       </div>
 
+   
+ <!-- Search Bar -->
+<form method="get" action="<?=site_url()?>" class="search-bar">
+  <input 
+    type="text" 
+    name="q" 
+    value="<?=html_escape($_GET['q'] ?? '')?>" 
+    placeholder="Search student..." 
+    class="search-input">
+  <button type="submit" class="search-btn">
+    <i class="fa fa-search"></i>
+  </button>
+</form>
+
+
       <!-- Table -->
       <div class="overflow-x-auto rounded-xl shadow-lg">
         <table class="w-full text-center border-collapse backdrop-blur bg-white/70">
@@ -74,15 +90,16 @@
               </tr>
             <?php endforeach; ?>
           </tbody>
+
         </table>
+
       </div>
-    </div>
       <!-- Pagination -->
-      <?php if (isset($pager)) : ?>
-        <div class="flex justify-center mt-8">
-          <?= $pager->links() ?>
-        </div>
-      <?php endif; ?>
+<div class="mt-4 flex justify-center">
+  <div class="pagination flex space-x-2">
+      <?=$page ?? ''?>
+  </div>
+</div>
     </div>
   </div>
 
