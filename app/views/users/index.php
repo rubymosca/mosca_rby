@@ -26,11 +26,15 @@
         Students Table
       </a>
       <a href="<?=site_url('users/create')?>" class="inline-block bg-gradient-to-r from-emerald-400 to-fuchsia-500 hover:from-emerald-500 hover:to-fuchsia-600 text-white font-bold px-7 py-3 rounded-full shadow-xl transition duration-200 text-lg tracking-wide animate-fadeIn">
-        <span class="inline-flex items-center gap-2">
+        <span class="inline-flex  gap-1">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
           Create New User
         </span>
       </a>
+      <a href="<?=site_url('login')?>" class="inline-block bg-gradient-to-r from-emerald-400 to-fuchsia-500 hover:from-emerald-500 hover:to-fuchsia-600 text-white font-bold px-7 py-3 rounded-full shadow-xl transition duration-200 text-lg tracking-wide animate-fadeIn">
+        Logout
+      </a>
+      
     </div>
   </nav>
 
@@ -41,22 +45,25 @@
       <div class="flex justify-between items-center mb-10">
         <h1 class="text-4xl font-extrabold text-fuchsia-800 drop-shadow flex items-center gap-3 tracking-tight">
           <svg class="w-10 h-10 text-cyan-400 animate-spin-slow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2" /></svg>
-          Users
+          Students List
         </h1>
       </div>
 
    
  <!-- Search Bar -->
-<form method="get" action="<?=site_url()?>" class="search-bar">
+<form method="get" action="<?=site_url('users/index')?>" class="search-bar">
   <input 
     type="text" 
     name="q" 
     value="<?=html_escape($_GET['q'] ?? '')?>" 
     placeholder="Search student..." 
-    class="search-input">
-  <button type="submit" class="search-btn">
-    <i class="fa fa-search"></i>
-  </button>
+    class="search-input px-4 py-3 w-2/3 md:w-1/2 lg:w-1/3 rounded-full border border-fuchsia-300 focus:outline-none focus:ring-2 focus:ring-fuchsia-400 bg-white/80 shadow-sm transition">
+  <button 
+            type="submit" 
+            class=" bg-gradient-to-r from-emerald-400 to-fuchsia-500 hover:from-emerald-500 hover:to-fuchsia-600 text-white font-bold px-7 py-3  shadow-xl transition duration-200 text-lg tracking-wide rounded-full animate-fadeIn"
+          >
+            Search
+          </button>
 </form>
 
 
@@ -92,19 +99,39 @@
           </tbody>
 
         </table>
-
+      
       </div>
-      <!-- Pagination -->
-<div class="mt-4 flex justify-center">
-  <div class="pagination flex space-x-2">
-      <?=$page ?? ''?>
+
+
+<!-- Pagination -->
+<div class="pagination-container mt-10 flex justify-center">
+  <div class="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-xl border border-fuchsia-200/60 rounded-full px-8 py-4 shadow-2xl ring-2 ring-fuchsia-200/40">
+    <?php if (isset($page)): ?>
+      <?= str_replace(
+        [
+          '<a ',
+          '<strong class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 ">',
+          '</strong>'
+        ],
+        [
+          // Pagination link
+          '<a class="px-5 py-2 rounded-full font-bold text-fuchsia-800 border border-fuchsia-200 bg-white/70 hover:bg-gradient-to-r hover:from-fuchsia-100/80 hover:to-cyan-100/80 hover:text-fuchsia-900 hover:shadow-lg transition duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-fuchsia-300" ',
+          // Current page
+          '<span class="px-5 py-2 rounded-full bg-gradient-to-r from-fuchsia-600 via-blue-500 to-cyan-400 text-white font-extrabold text-lg shadow-xl ring-4 ring-cyan-200/60 animate-pulse">',
+          '</span>'
+        ],
+        $page
+      ); ?>
+    <?php endif; ?>
   </div>
 </div>
     </div>
-  </div>
+</div>
+    </div>
+   
 
   <!-- Custom Animations -->
 
-  </style>
+  
 </body>
 </html>
