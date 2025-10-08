@@ -1,91 +1,103 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sign in</title>
   <link rel="stylesheet" href="<?=base_url();?>public/style.css">
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .password-toggle {
-      cursor: pointer;
-      user-select: none;
-    }
-    .error {
-      color: red;
-    }
-    .glass {
-      background: rgba(255,255,255,0.7);
-      box-shadow: 0 10px 40px 0 rgba(120,0,255,0.15), 0 2px 4px 0 rgba(0,0,0,0.10);
-      backdrop-filter: blur(12px);
-      border-radius: 1.5rem;
-      border: 1px solid rgba(255,255,255,0.25);
-    }
-  </style>
 </head>
+<body class="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#2b0756] font-sans antialiased">
 
-<body class="relative min-h-screen font-sans bg-gradient-to-br from-fuchsia-900/80 via-blue-800/70 to-cyan-400/60 flex items-center justify-center overflow-hidden">
-
-  <!-- Hero Section with SVG Wave -->
-  <div class="absolute inset-0 z-0">
-    <div class="absolute inset-0 bg-gradient-to-br from-fuchsia-900/80 via-blue-800/70 to-cyan-400/60"></div>
-    <svg class="absolute bottom-0 left-0 w-full h-40" viewBox="0 0 1440 320">
-      <path fill="#fff" fill-opacity="0.7" d="M0,224L48,197.3C96,171,192,117,288,117.3C384,117,480,171,576,197.3C672,224,768,224,864,197.3C960,171,1056,117,1152,117.3C1248,117,1344,171,1392,197.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-    </svg>
-  </div>
-
-  <!-- Main Content -->
-  <div class="glass relative z-10 border-white/60 shadow-2xl p-10 w-full max-w-md animate-fadeIn">
-
-    <!-- Header -->
-    <div class="mb-8 flex flex-col items-center">
-      <div class="bg-gradient-to-tr from-fuchsia-400 to-cyan-400 rounded-full p-3 shadow-lg mb-3">
-        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 00-8 0v2M12 11a4 4 0 100-8 4 4 0 000 8z" />
-        </svg>
-      </div>
-      <h1 class="text-3xl font-extrabold text-fuchsia-800 tracking-tight drop-shadow">Welcome Back</h1>
-      <p class="text-gray-700 mt-1 text-sm">Sign in to your account</p>
-    </div>
-
-    <?php if (isset($error)): ?>
-      <p class="error text-center mb-4"><?= htmlspecialchars($error) ?></p>
-    <?php endif; ?>
-
-    <form method="post" action="<?= site_url('login') ?>" class="space-y-6">
-      <div>
-        <label for="username" class="block text-fuchsia-800 font-semibold mb-2">Username or Email</label>
-        <input type="text" id="username" name="username" required
-               class="w-full px-4 py-3 border border-fuchsia-300 rounded-full focus:outline-none focus:ring-2 focus:ring-fuchsia-400 bg-white/80 shadow-sm transition" />
+  <div class="min-h-screen flex items-center justify-center px-4 py-12">
+    <div class="w-full max-w-xl relative">
+      <!-- large soft background glow -->
+      <div class="absolute inset-0 -z-10 rounded-2xl overflow-hidden">
+        <div class="w-full h-full bg-gradient-to-tr from-[#0b1220] via-[#26233a] to-[#2b0756] opacity-90"></div>
+        <div class="absolute -left-24 -top-24 w-64 h-64 rounded-full bg-gradient-to-br from-[#60f0ff]/20 to-[#ff7ce6]/12 blur-3xl"></div>
+        <div class="absolute -right-24 -bottom-24 w-72 h-72 rounded-full bg-gradient-to-br from-[#7ef5c1]/10 to-[#a78bfa]/8 blur-3xl"></div>
       </div>
 
-      <div>
-        <label for="password" class="block text-fuchsia-800 font-semibold mb-2">Password</label>
-        <div class="relative">
-          <input type="password" id="password" name="password" required
-                 class="w-full px-4 py-3 border border-fuchsia-300 rounded-full focus:outline-none focus:ring-2 focus:ring-fuchsia-400 bg-white/80 shadow-sm transition" />
-          <span class="password-toggle absolute right-4 top-3 text-fuchsia-500" onclick="togglePassword()">👁️</span>
+      <!-- card -->
+      <div class="mx-auto relative bg-white/6 border border-white/8 backdrop-blur-md p-10 rounded-3xl shadow-2xl" style="max-width:680px;">
+        <!-- header -->
+        <div class="flex flex-col items-center mb-8">
+          <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-[#7be9ff] to-[#ff7de1] flex items-center justify-center shadow-lg mb-4">
+            <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center"></div>
+          </div>
+
+          <h1 class="text-3xl font-extrabold text-white tracking-tight mb-1">Sign in</h1>
+          <p class="text-sm text-white/70">Enter your credentials to continue</p>
         </div>
+
+        <?php if (isset($error)): ?>
+          <div class="mb-4 text-sm text-red-300 bg-red-900/30 border border-red-900/20 rounded-md px-4 py-2"><?= htmlspecialchars($error) ?></div>
+        <?php endif; ?>
+
+        <!-- form -->
+        <form method="post" action="<?= site_url('login') ?>" class="space-y-5">
+          <!-- username -->
+          <div>
+            <label class="block text-xs font-medium text-white/70 mb-2">Username or Email</label>
+            <div class="flex items-center bg-white/6 rounded-full px-4 py-3 border border-white/10 focus-within:ring-2 focus-within:ring-[#7be9ff]/40 transition">
+              <svg class="w-5 h-5 text-[#7be9ff] mr-3 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 11c1.657 0 3 1.343 3 3v2H5v-2c0-1.657 1.343-3 3-3" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+              <input type="text" id="username" name="username" required autocomplete="username" placeholder="name@example.com"
+                     class="w-full bg-transparent focus:outline-none text-white placeholder-white/50"/>
+            </div>
+          </div>
+
+          <!-- password -->
+          <div>
+            <label class="block text-xs font-medium text-white/70 mb-2">Password</label>
+            <div class="relative flex items-center bg-white/6 rounded-full px-4 py-3 border border-white/10 focus-within:ring-2 focus-within:ring-[#ff7de1]/30 transition">
+              <svg class="w-5 h-5 text-[#ff7de1] mr-3 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+              <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="••••••••"
+                     class="w-full bg-transparent focus:outline-none text-white placeholder-white/50 pr-12"/>
+              <button type="button" onclick="togglePassword()" aria-label="Toggle password" class="absolute right-4 text-white/60 hover:text-white">
+                <span id="eyeIcon">👁️</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- controls -->
+          <div class="flex items-center justify-between">
+            <label class="flex items-center gap-3 text-white/80">
+              <input type="checkbox" name="remember" class="w-4 h-4 rounded bg-white/6 border-white/10 focus:ring-[#7be9ff]"/>
+              <span class="text-sm">Remember me</span>
+            </label>
+
+            <a href="<?= site_url('register') ?>" class="text-sm font-medium text-[#7be9ff] hover:underline">Register</a>
+          </div>
+
+          <!-- submit -->
+          <div>
+            <button type="submit" class="w-full rounded-full py-3 text-lg font-semibold text-slate-900 shadow-lg transition transform hover:scale-[1.01] bg-[linear-gradient(90deg,#7be9ff,#ff7de1)]">
+              Sign in
+            </button>
+          </div>
+        </form>
+
+        <p class="mt-5 text-center text-xs text-white/50">By signing in you agree to the site's terms.</p>
+
+        <!-- small footer -->
+        <div class="mt-6 text-center text-xs text-white/60">Need help? Contact admin.</div>
       </div>
-
-      <button type="submit" class="w-full bg-gradient-to-r from-cyan-400 to-fuchsia-500 hover:from-cyan-500 hover:to-fuchsia-600 text-white font-bold py-3 rounded-full shadow-lg transition duration-200 text-lg">
-        Login
-      </button>
-    </form>
-
-    <p class="text-center mt-6 text-gray-700">Don't have an account?
-      <a href="<?= site_url('register') ?>" class="text-fuchsia-700 hover:text-cyan-600 font-semibold underline underline-offset-2">Register here</a>
-    </p>
+    </div>
   </div>
+
+  <style>
+    html { color-scheme: dark; }
+    /* subtle rounded card inner border */
+    .backdrop-blur-md { backdrop-filter: blur(8px); }
+  </style>
 
   <script>
-    function togglePassword() {
-      var pwd = document.getElementById('password');
-      if (pwd.type === 'password') {
-        pwd.type = 'text';
-      } else {
-        pwd.type = 'password';
-      }
+    function togglePassword(){
+      const p = document.getElementById('password');
+      const icon = document.getElementById('eyeIcon');
+      if (p.type === 'password') { p.type = 'text'; icon.textContent = '🙈'; }
+      else { p.type = 'password'; icon.textContent = '👁️'; }
     }
   </script>
 </body>
